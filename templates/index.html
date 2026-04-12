@@ -1,118 +1,210 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Weather Excuses</title>
-        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&dislay=swap" rel="stylesheet">
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+<head>
+    <meta charset="UTF-8">
+    <title>Slushy Excuses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            body {
-                min-height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background: linear-gradient(135deg, #74ebd5, #acb6ef);
-                font-family: 'Segoe UI', sans-serif;
-            }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #a8edea, #74b9ff, #fd79a8);
+            font-family: 'Nunito', sans-serif;
+        }
 
-            .card{
-                background: white;
-                padding: 40px;
-                border-radius: 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-                max-width: 480px;
-                text-align: center;
-            }
+        .card {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            padding: 44px 40px;
+            border-radius: 28px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+        }
 
-            h1 {
-                font-size: 1.8rem;
-                margin-bottom: 28px;
-                color: #333;
-            }
+        .slush-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
 
-            p.subtitle {
-                font-size: 0.95rem;
-                margin-bottom: 28px;
-                color: #888;
-            }
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.4rem;
+            color: #2d3436;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
 
-            input {
-                width: 100%;
-                padding: 12px 16px;
-                margin-bottom: 14px;
-                border: 2px solid #e0e0e0;
-                border-radius: 10px;
-                font-size: 1rem;
-                outline: none;
-                transition: border 0.2s;
-            }
+        p.subtitle {
+            color: #636e72;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
 
-            input:focus {
-                border-color: #74ebd5;
-            }
+        input {
+            width: 100%;
+            padding: 13px 18px;
+            margin-bottom: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.6);
+            color: #2d3436;
+            outline: none;
+            transition: border 0.2s, background 0.2s;
+        }
 
-            button {
-                width: 100%;
-                padding: 13px;
-                background: linear-gradient(135deg, #74ebd5, #acb6ef);
-                color: white;
-                border: none;
-                border-radius: 10px;
-                font-size: 1rem;
-                font-weight: bold;
-                cursor: pointer;
-                transition: opacity 0.2s;
-            }
+        input::placeholder {
+            color: #b2bec3;
+        }
 
-            button:hover {
-                opacity: 0.85;
-            }
+        input:focus {
+            border-color: #74b9ff;
+            background: rgba(255, 255, 255, 0.85);
+        }
 
-            .result {
-                margin-top: 24px;
-                padding: 18px;
-                background: #f4f4f4;
-                border-radius: 12px;
-                color: #444;
-                font-size: 0.97rem;
-                line-height: 1.6;
-                text-align: left;
-            }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00cec9, #6c5ce7);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: transform 0.15s, opacity 0.2s;
+        }
 
-            .result p {
-                margin-top: 12px;
-            }
+        button:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
 
-            .punchline {
-                color: #6c5ce7;
-                font-style: italic;
-                font-size: 0.95rem;
-                border-top: 1.5px solid rgba(255, 255, 255, 0.6);
-                padding-top: 12px;
-                margin-bottom: 0 !important;
-            }
-        </style>
-    </head>
-    <body>
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .result {
+            margin-top: 24px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.55);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            text-align: left;
+        }
+
+        .weather-pill {
+            display: inline-block;
+            background: linear-gradient(135deg, #00cec9, #6c5ce7);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            padding: 3px 12px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .excuse-text {
+            color: #2d3436;
+            font-size: 0.97rem;
+            font-weight: 600;
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+
+        .punchline {
+            border-top: 1.5px solid rgba(255, 255, 255, 0.6);
+            padding-top: 12px;
+            color: #6c5ce7;
+            font-size: 0.9rem;
+            font-style: italic;
+            font-weight: 700;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="slush" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+
+    <div style="position: relative; z-index: 1;">
         <div class="card">
-            <h1>Weather Excuses</h1>
+            <h1>Slushy Excuses</h1>
             <p class="subtitle">Blame the weather for your bad day.</p>
             <form action="/roast" method="post">
                 <input type="text" name="city" placeholder="Your city">
-                <input type="text" name="bady_day" placeholder="What happend?">
+                <input type="text" name="bad_day" placeholder="What happened?">
                 <button type="submit">Get my excuse!</button>
             </form>
             {% if excuse %}
             <div class="result">
-                <p>{{ excuse }}</p>
+                <div class="weather-pill">{{ weather_summary }}</div>
+                <p class="excuse-text">{{ excuse }}</p>
                 <p class="punchline">{{ punchline }}</p>
             </div>
             {% endif %}
-        </div>   
-    </body>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('slush');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const chunks = Array.from({length: 60}, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 7 + 3,
+            dx: (Math.random() - 0.5) * 0.6,
+            dy: (Math.random() - 0.5) * 0.6,
+            angle: Math.random() * Math.PI,
+            opacity: Math.random() * 0.35 + 0.15,
+            color: ['#ffffff','#a8edea','#74b9ff','#fd79a8','#00cec9','#6c5ce7'][Math.floor(Math.random()*6)]
+        }));
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const c of chunks) {
+                ctx.beginPath();
+                ctx.ellipse(c.x, c.y, c.r, c.r * 0.55, c.angle, 0, Math.PI * 2);
+                ctx.fillStyle = c.color;
+                ctx.globalAlpha = c.opacity;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+
+                c.x += c.dx;
+                c.y += c.dy;
+                c.angle += 0.01;
+
+                if (c.x < -10) c.x = canvas.width + 10;
+                if (c.x > canvas.width + 10) c.x = -10;
+                if (c.y < -10) c.y = canvas.height + 10;
+                if (c.y > canvas.height + 10) c.y = -10;
+            }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
 </html>
