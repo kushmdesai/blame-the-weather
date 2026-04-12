@@ -1,11 +1,118 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Weather Excuses</title>
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&dislay=swap" rel="stylesheet">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(135deg, #74ebd5, #acb6ef);
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            .card{
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                max-width: 480px;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 28px;
+                color: #333;
+            }
+
+            p.subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 28px;
+                color: #888;
+            }
+
+            input {
+                width: 100%;
+                padding: 12px 16px;
+                margin-bottom: 14px;
+                border: 2px solid #e0e0e0;
+                border-radius: 10px;
+                font-size: 1rem;
+                outline: none;
+                transition: border 0.2s;
+            }
+
+            input:focus {
+                border-color: #74ebd5;
+            }
+
+            button {
+                width: 100%;
+                padding: 13px;
+                background: linear-gradient(135deg, #74ebd5, #acb6ef);
+                color: white;
+                border: none;
+                border-radius: 10px;
+                font-size: 1rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: opacity 0.2s;
+            }
+
+            button:hover {
+                opacity: 0.85;
+            }
+
+            .result {
+                margin-top: 24px;
+                padding: 18px;
+                background: #f4f4f4;
+                border-radius: 12px;
+                color: #444;
+                font-size: 0.97rem;
+                line-height: 1.6;
+                text-align: left;
+            }
+
+            .result p {
+                margin-top: 12px;
+            }
+
+            .punchline {
+                color: #6c5ce7;
+                font-style: italic;
+                font-size: 0.95rem;
+                border-top: 1.5px solid rgba(255, 255, 255, 0.6);
+                padding-top: 12px;
+                margin-bottom: 0 !important;
+            }
+        </style>
+    </head>
     <body>
-        <form action="/roast" method="post">
-            <input type="text" name="city" placeholder="Your location">
-            <input type="text" name="bad_day" placeholder="What happend?">
-            <button type="submit">Get your excuse!</button>
-        </form>
-        {{text}}
+        <div class="card">
+            <h1>Weather Excuses</h1>
+            <p class="subtitle">Blame the weather for your bad day.</p>
+            <form action="/roast" method="post">
+                <input type="text" name="city" placeholder="Your city">
+                <input type="text" name="bady_day" placeholder="What happend?">
+                <button type="submit">Get my excuse!</button>
+            </form>
+            {% if excuse %}
+            <div class="result">
+                <p>{{ excuse }}</p>
+                <p class="punchline">{{ punchline }}</p>
+            </div>
+            {% endif %}
+        </div>   
     </body>
 </html>
