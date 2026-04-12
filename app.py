@@ -58,5 +58,9 @@ def roast_page():
    result = ai(city, bad_day, weather)
    return render_template("index.html", excuse = result.excuse, punchline = result.punchline)
 
+@app.route("/about")
+def about_page():
+    return render_template("about.html")
+
 if __name__ == "__main__":
     app.run(5000, debug=True)

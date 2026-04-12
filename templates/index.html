@@ -137,6 +137,31 @@
             font-weight: 700;
             margin: 0;
         }
+
+        a.back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 13px 32px;
+            background: linear-gradient(135deg, #00cec9, #6c5ce7);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: "Fredoka One", cursive;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition:
+            opacity 0.2s,
+            transform 0.15s;
+      }
+
+      a.back-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+      }
+
+      a.back-btn:active {
+        transform: scale(0.98);
+      }
     </style>
 </head>
 <body>
@@ -158,6 +183,7 @@
                 <p class="punchline">{{ punchline }}</p>
             </div>
             {% endif %}
+            <a href="/about" class="back-btn">Learn more ></a>
         </div>
     </div>
 

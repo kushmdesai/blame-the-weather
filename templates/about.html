@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>About - Slushy Excuses</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(160deg, #a8edea, #74b9ff, #fd79a8);
+        font-family: "Nunito", sans-serif;
+        padding: 40px 20px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        padding: 44px 40px;
+        border-radius: 28px;
+        max-width: 580px;
+        width: 90%;
+        text-align: center;
+      }
+
+      h1 {
+        font-family: "Fredoka One", cursive;
+        font-size: 2.4rem;
+        color: #2d3436;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+      }
+
+      .subtitle {
+        color: #636e72;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 28px;
+      }
+
+      .about-text {
+        text-align: left;
+        background: rgba(255, 255, 255, 0.55);
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        border-radius: 20px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .about-text p {
+        color: #2d3436;
+        font-size: 0.97rem;
+        font-weight: 600;
+        line-height: 1.75;
+        margin-bottom: 14px;
+      }
+
+      .about-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      a.back-btn {
+        display: inline-block;
+        padding: 13px 32px;
+        background: linear-gradient(135deg, #00cec9, #6c5ce7);
+        color: white;
+        border-radius: 50px;
+        text-decoration: none;
+        font-family: "Fredoka One", cursive;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition:
+          opacity 0.2s,
+          transform 0.15s;
+      }
+
+      a.back-btn:hover {
+        opacity: 0.9;
+        transform: scale(1.02);
+      }
+
+      a.back-btn:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      id="slush"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      "
+    ></canvas>
+
+    <div style="position: relative; z-index: 1">
+      <div class="card">
+        <h1>About</h1>
+        <p class="subtitle">What is this thing anyway?</p>
+        <div class="about-text">
+          <p>
+            Ever had a day so bad you just needed someone — or something — to
+            blame? That's exactly why iconses exists. Whether you skipped the
+            gym, cancelled plans, or just spent the entire day horizontal on
+            your couch, we've got a scientifically dubious but emotionally
+            satisfying excuse ready for you.
+          </p>
+          <p>
+            Here's how it works: you type in your city and whatever mildly
+            embarrassing thing you did today, and we pull real live weather data
+            from Open-Meteo to figure out exactly what the sky was doing at that
+            moment. Then Google Gemini — a genuinely powerful AI — takes that
+            information and crafts a personalized, first-person roast that
+            justifies your life choices with the confidence of someone who has
+            never once felt guilty about anything.
+          </p>
+          <p>
+            Is it your fault you didn't go outside? Absolutely not. It was 3.6
+            degrees and 100% cloud cover. Nature basically sent you a strongly
+            worded letter telling you to stay in bed, and honestly, you were
+            just being respectful.
+          </p>
+          <p>
+            Slushy Excuses was built with Python and Flask on the backend,
+            hooked up to the Open-Meteo weather API for real-time conditions and
+            the Google Gemini API for the AI-generated roasts. It was made as
+            part of Hack Club's Slushies event, a program that gives teenagers
+            around the world grants to build real projects and ship them to the
+            world.
+          </p>
+          <p>
+            Hack Club is a global nonprofit community of teenage makers and
+            builders, and Slushies is one of their many "you ship it, you get
+            rewarded for it" programs. The idea is simple: build something real,
+            put it on the internet, and get a little something back for your
+            effort — in this case, literally a slushy.
+          </p>
+          <p>
+            So next time life asks you why you didn't do the thing, just open
+            this app, type in your city, and let the weather take the fall.
+          </p>
+        </div>
+        <a href="/" class="back-btn">← Back home</a>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("slush");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      const chunks = Array.from({ length: 60 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 7 + 3,
+        dx: (Math.random() - 0.5) * 0.6,
+        dy: (Math.random() - 0.5) * 0.6,
+        angle: Math.random() * Math.PI,
+        opacity: Math.random() * 0.35 + 0.15,
+        color: [
+          "#ffffff",
+          "#a8edea",
+          "#74b9ff",
+          "#fd79a8",
+          "#00cec9",
+          "#6c5ce7",
+        ][Math.floor(Math.random() * 6)],
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const c of chunks) {
+          ctx.beginPath();
+          ctx.ellipse(c.x, c.y, c.r, c.r * 0.55, c.angle, 0, Math.PI * 2);
+          ctx.fillStyle = c.color;
+          ctx.globalAlpha = c.opacity;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+
+          c.x += c.dx;
+          c.y += c.dy;
+          c.angle += 0.01;
+
+          if (c.x < -10) c.x = canvas.width + 10;
+          if (c.x > canvas.width + 10) c.x = -10;
+          if (c.y < -10) c.y = canvas.height + 10;
+          if (c.y > canvas.height + 10) c.y = -10;
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    </script>
+  </body>
+</html>
